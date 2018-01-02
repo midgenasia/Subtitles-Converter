@@ -24,7 +24,7 @@
   This command produces the file like this:<br>
   <code>target_1000.vtt</code>
 
-* Only these tags can be used: &lt;b&gt;, &lt;i&gt and &lt;s&gt.
+* Only these tags can be used: &lt;b&gt;, &lt;i&gt; and &lt;s&gt;.
 
 
 <h3>基本的な説明</h3>
