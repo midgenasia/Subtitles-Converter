@@ -9,7 +9,7 @@
 
 // Error if no arguments passed
 // 引数がなければエラー
-if (!is_array($argv) || empty($argv)) {
+if (!is_array($argv) || count($argv) <= 1) {
 	trigger_error("Specify the full path to your target .ass file as an argument.", E_USER_ERROR);
 	exit(1);
 }
@@ -17,7 +17,7 @@ if (!is_array($argv) || empty($argv)) {
 // Path characters must be encoded by CP932 on Windows
 // Windows環境ではパスの文字コードをCP932にする必要がある
 $os	= getenv("OS");
-$arg_path	= $argv[1];
+$arg_path	= $argv[1] ?? "";
 if (preg_match('/^windows/i', $os)) {
 	mb_internal_encoding("CP932");
 	$arg_path	= mb_convert_encoding($arg_path, "CP932", "UTF-8");
@@ -43,7 +43,7 @@ if (!preg_match('/\.ass$/i', $ass_filename)) {
 // .assがあるディレクトリは保存にも使うので、そのディレクトリが書き込み可能か調べる
 $ass_path	= dirname($arg_path);
 if (!is_writable($ass_path)) {
-	trigger_error("Set the directory containing your target .ass file writable.", E_USER_ERROR);
+	trigger_error("Set the directory containing your target .ass file writable. Specified: $ass_path", E_USER_ERROR);
 	exit(1);
 }
 
